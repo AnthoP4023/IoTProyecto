@@ -3,7 +3,7 @@ import{conmysql} from '../db.js'
 export const getResultados=
     async (req,res) => {
         try {
-            const [result]= await conmysql.query(' select * from resultados')
+            const [result]= await conmysql.query(' select * from Mediciones')
             res.json(result)
         } catch (error) {
             return res.status(500).json({message:"Error  al consultar resultados"})
@@ -13,7 +13,7 @@ export const getResultados=
     export const postResultados = async (req, res) => {
         try {
             const { BPM, SpO2 } = req.body; // Cambia bpm y spo2 a BPM y SpO2
-            const [rows] = await conmysql.query('INSERT INTO resultados (bpm, spo2) VALUES (?, ?)', [BPM, SpO2]);
+            const [rows] = await conmysql.query('INSERT INTO Mediciones (bpm, spo2) VALUES (?, ?)', [BPM, SpO2]);
     
             res.json({
                 message: "Resultados guardados correctamente",
